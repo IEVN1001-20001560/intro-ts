@@ -1,23 +1,36 @@
-//area  cuadrado rectangulo y circulo 
-
-class Figura {
-    private tipo: string;
-    private lado: number = 0;
-    private base: number = 0;
-    private altura: number = 0;
-    private radio: number = 0;
-    constructor(tipo: string, lado?: number, base?: number, altura?: number, radio?: number) {
-        this.tipo = tipo;
-
-        if (tipo === "cuadrado" && lado) {
-            this.lado = lado;
-        } else if (tipo === "rectangulo" && base && altura) {
-            this.base = base;
-            this.altura = altura;
-        } else if (tipo === "circulo" && radio) {
-            this.radio = radio;
-        }
+export class Area {
+    protected anchoRectangulo: number;
+    protected ladoCuadrado: number;
+    protected radioCirculo: number;
+  
+    constructor(anchoRectangulo: number, ladoCuadrado: number, radioCirculo: number) {
+      this.anchoRectangulo = anchoRectangulo;
+      this.ladoCuadrado = ladoCuadrado;
+      this.radioCirculo = radioCirculo;
     }
-
-}
-//3metodos
+  
+    public areaRectangulo(): number {
+      return this.anchoRectangulo * this.ladoCuadrado;
+    }
+  
+    public areaCuadrado(): number {
+      return this.ladoCuadrado * this.ladoCuadrado;
+    }
+  
+    public areaCirculo(): number {
+      return Math.PI * Math.pow(this.radioCirculo, 2);
+    }
+  
+    public mostrarAreas(): void {
+      console.log(`
+      El resultado del area de las figuras es:
+      - Rectsngulo: ${this.areaRectangulo()}
+      - Cuadrado: ${this.areaCuadrado()}
+      - Circulo: ${this.areaCirculo()}
+      `);
+    }
+  }
+  
+  const formas = new Area(10, 6, 3);
+  formas.mostrarAreas();
+  
